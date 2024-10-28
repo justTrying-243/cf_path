@@ -35,7 +35,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       search();
-    }, 300000);
+    }, 60 * 1000);
     return () => clearInterval(interval);
   }, []);
   useEffect(() => {
