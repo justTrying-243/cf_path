@@ -14,9 +14,6 @@ function getUniqueContestUrls(QuestionsOfFirst, rating) {
         item.problem.rating === Number(rating) && item.verdict === "OK"
     )
   );
-  // for (const key in filteredData) {
-  //   console.log(filteredData[key]);
-  // }
   const uniqueUrls = new Set();
 
   for (const key in filteredData) {

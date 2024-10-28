@@ -21,7 +21,6 @@ function App() {
     );
     let data1 = await response1.json();
     let data2 = await response2.json();
-    console.log(data1, data2);
     if (data1.status === "FAILED" || data2.status === "FAILED") {
       if (data1.status === "FAILED") alert(`${handle1} username not found`);
       if (data2.status === "FAILED") alert(`${handle2} username not found`);
@@ -33,7 +32,12 @@ function App() {
     }
     setLoading(false);
   };
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      search();
+    }, 300000);
+    return () => clearInterval(interval);
+  }, []);
   useEffect(() => {
     const handler = setTimeout(() => {
       if (handle1.trim() !== "" && handle2.trim() !== "") {
