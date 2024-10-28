@@ -22,7 +22,7 @@ function getUniqueContestUrls(QuestionsOfFirst, rating) {
       const index = filteredData[key].problem.index;
 
       // Construct the URL
-      const url = `https://codeforces.com/contest/${contestId}/problem/${index}`;
+      const url = `https://codeforces.com/contest/${contestId}/problem/${index}/`;
 
       // Convert the tag array to a string
       const tagsString = filteredData[key].problem.tags.join(",");

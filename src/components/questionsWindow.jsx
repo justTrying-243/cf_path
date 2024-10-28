@@ -63,6 +63,8 @@ const QuestionWindow = ({
                   <td className="border border-gray-300 p-2">
                     <a
                       href={entry[0]}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-gray-900 hover:underline hover:text-blue-800 transition-colors duration-200"
                     >
                       {entry[1]}
@@ -109,6 +111,8 @@ const QuestionWindow = ({
                   <td className="border border-gray-300 p-2">
                     <a
                       href={entry[0]}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-gray-900 hover:underline hover:text-blue-800 transition-colors duration-200"
                     >
                       {entry[1]}
