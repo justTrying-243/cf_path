@@ -3,6 +3,7 @@ import getFilteredContestData from "./Questions";
 const QuestionWindow = ({
   QuestionsOfFirst,
   QuestionsOfSecond,
+  QuestionsOfThird,
   rating,
   setLoading,
 }) => {
@@ -14,12 +15,13 @@ const QuestionWindow = ({
   setLoading(true);
   const set1 = getFilteredContestData(QuestionsOfFirst, rating);
   const set2 = getFilteredContestData(QuestionsOfSecond, rating);
+  const set3 = getFilteredContestData(QuestionsOfThird, rating);
   const commonSet = new Set();
   const distinctSet = new Set();
   const [showTagsToDo, setShowTagsToDo] = useState(false);
   const [showTagsDone, setShowTagsDone] = useState(false);
   set1.forEach((entry) => {
-    if (set2.has(entry)) {
+    if (set2.has(entry) || set3.has(entry)) {
       commonSet.add(result(entry));
     } else {
       distinctSet.add(result(entry));

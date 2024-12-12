@@ -5,8 +5,10 @@ import loader from "./components/loader.gif";
 function App() {
   const [handle1, setHandle1] = useState("Dominater069");
   const [handle2, setHandle2] = useState("Shivansh_243");
+  const [handle3, setHandle3] = useState("__grind");
   const [QuestionsOfFirst, setQuestionsOfFirst] = useState({});
   const [QuestionsOfSecond, setQuestionsOfSecond] = useState({});
+  const [QuestionsOfThird, setQuestionsOfThird] = useState({});
   const [rating, setRating] = useState(1600);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [showInputTab, setShowInputTab] = useState(false);
@@ -19,16 +21,25 @@ function App() {
     const response2 = await fetch(
       `https://codeforces.com/api/user.status?handle=${handle2}&from=1&count=10000`
     );
+    const response3 = await fetch(
+      `https://codeforces.com/api/user.status?handle=${handle3}&from=1&count=10000`
+    );
     let data1 = await response1.json();
     let data2 = await response2.json();
+    let data3 = await response3.json();
     if (data1.status === "FAILED" || data2.status === "FAILED") {
       if (data1.status === "FAILED") alert(`${handle1} username not found`);
       if (data2.status === "FAILED") alert(`${handle2} username not found`);
       setQuestionsOfFirst({});
       setQuestionsOfSecond({});
+      setQuestionsOfThird({});
     } else {
       setQuestionsOfFirst(data1.result);
       setQuestionsOfSecond(data2.result);
+      if (data3.status === "FAILED") {
+        setQuestionsOfThird({});
+        alert(`${handle3} username not found`);
+      } else setQuestionsOfThird(data3.result);
     }
     setLoading(false);
   };
@@ -85,6 +96,14 @@ function App() {
                       onChange={(e) => setHandle2(e.target.value)}
                     />
                   </div>
+                  <div className="flex flex-col items-center">
+                    <label className="text-gray-200 mb-1">Handle 2</label>
+                    <input
+                      className="p-2 rounded-md bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                      value={handle3}
+                      onChange={(e) => setHandle3(e.target.value)}
+                    />
+                  </div>
                 </div>
                 <div className="flex items-center space-x-5 mt-4">
                   <input
@@ -126,6 +145,7 @@ function App() {
             <QuestionWindow
               QuestionsOfFirst={QuestionsOfFirst}
               QuestionsOfSecond={QuestionsOfSecond}
+              QuestionsOfThird={QuestionsOfThird}
               rating={rating}
               setLoading={setLoading}
             />
